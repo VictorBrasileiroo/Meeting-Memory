@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Meeting Memory",
+  "version": "0.1.0",
+  "description": "Captura áudio da aba e microfone, transcreve e organiza notas com Gemini.",
+  "minimum_chrome_version": "116",
+  "permissions": ["storage", "activeTab", "tabCapture", "offscreen"],
+  "host_permissions": ["https://generativelanguage.googleapis.com/*"],
+  "action": { "default_title": "Meeting Memory", "default_popup": "src/popup/popup.html" },
+  "background": { "service_worker": "service-worker.js", "type": "module" },
+  "options_ui": { "page": "src/settings/settings.html", "open_in_tab": true },
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; media-src 'self' blob:; font-src 'self'; connect-src https://generativelanguage.googleapis.com; object-src 'none'; base-uri 'none'; frame-ancestors 'none'"
+  }
+}

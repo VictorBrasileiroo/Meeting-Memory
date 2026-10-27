@@ -1,0 +1,73 @@
+@layer components {
+  html.extension-popup { width: 420px; }
+  body { padding: 6px; }
+  html.extension-popup body { padding: 0; }
+  html.extension-popup .popup-shell { width: 100%; border: 0; border-radius: 0; }
+  .popup-shell { box-sizing: border-box; width: 420px; max-width: 100%; padding: 24px; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 16px; font-size: 14px; line-height: 1.45; }
+  .popup-shell .app-header { display: flex; flex-wrap: nowrap; align-items: center; gap: 8px; margin-bottom: 32px; }
+  .popup-brand { flex: 1; min-width: 0; }
+  .popup-brand h1 { white-space: nowrap; font-size: 16px; font-weight: 650; }
+  .popup-title, .popup-shell .popup-status { font-size: 28px; font-weight: 600; font-stretch: 90%; line-height: 1.1; letter-spacing: -.035em; margin: 0 0 24px; }
+  .popup-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; padding: 4px 8px; flex-shrink: 0; }
+  .popup-badge > span { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+  .popup-shell .popup-sources { margin-bottom: 24px; }
+  .popup-sources h2 { font-size: 13px; font-weight: 500; margin: 0 0 8px; }
+  .audio-source-list { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); }
+  .audio-source-row { display: flex; align-items: center; gap: 12px; min-height: 68px; padding: 10px 14px; }
+  .audio-source-row + .audio-source-row { border-top: 1px solid var(--line); }
+  .audio-source-row > svg { box-sizing: content-box; padding: 9px; background: var(--primary-soft); color: var(--primary-hover); border-radius: 10px; flex-shrink: 0; }
+  .audio-source-row + .audio-source-row > svg { background: var(--audio-mic-soft); color: var(--ink); }
+  .audio-source-text { min-width: 0; }
+  .audio-source-text strong, .audio-source-text span { display: block; }
+  .audio-source-text strong { font-size: 14px; font-weight: 650; }
+  .audio-source-text span { font-size: 13px; color: var(--muted-foreground); }
+  .audio-level { display: flex; gap: 2px; width: 48px; margin-left: auto; height: 2px; background: var(--audio-tab); flex-shrink: 0; }
+  .audio-source-row + .audio-source-row .audio-level { background: #2FB58A; }
+  .audio-level i { display: none; }
+  .recording-panel > button, .popup-next { margin-top: 10px; }
+  .popup-dev-tools { margin-top: 20px; font-size: 12px; color: var(--muted-foreground); }
+  .popup-dev-tools summary { cursor: pointer; padding: 8px 0; }
+  .popup-dev-tools .button-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .popup-foundation { font-size: 12px; color: var(--muted-foreground); }
+  .popup-foundation p { margin: 8px 0 0; }
+  .popup-recording { background: var(--ink); color: white; }
+  .popup-recording .popup-brand .text-foreground { color: white; }
+  .popup-recording .popup-brand .text-muted-foreground, .popup-recording .popup-foundation, .popup-recording .popup-dev-tools { color: var(--muted-on-ink); }
+  .recording-clock { font-size: clamp(56px, 20vw, 84px); line-height: 1; font-weight: 500; font-stretch: 86%; letter-spacing: -.04em; font-variant-numeric: tabular-nums; margin-bottom: 20px; overflow-wrap: anywhere; }
+  .popup-recording .app-header > button { color: var(--muted-on-ink); }
+  .popup-recording .popup-badge { color: var(--recording); background: var(--ink-raised); }
+  .popup-recording :focus-visible { outline-color: var(--audio-tab); }
+  .recording-dot { width: 8px; height: 8px; background: var(--recording); border-radius: 50%; animation: recording-pulse 1.6s ease-in-out infinite; }
+  .processing-steps { list-style: none; padding: 0; margin: 0 0 28px; }
+  .processing-steps li { position: relative; display: flex; align-items: flex-start; gap: 14px; min-height: 76px; color: var(--muted-foreground); }
+  .processing-steps li:last-child { min-height: 36px; }
+  .processing-steps li:not(:last-child)::after { content: ''; position: absolute; left: 15px; top: 34px; height: 38px; border-left: 1px dashed var(--input); }
+  .step-icon { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--input); border-radius: 50%; flex-shrink: 0; }
+  .step-icon svg { width: 16px; height: 16px; }
+  .step-active .step-icon { background: var(--primary); color: white; border-color: var(--primary); }
+  .processing-steps strong { display: block; font-size: 15px; font-weight: 600; padding-top: 4px; }
+  .processing-steps p { font-size: 13px; margin: 4px 0; }
+  .stage-spinner { animation: stage-spin .9s linear infinite; }
+  .popup-error-panel { background: #FDECEA; color: #7E1C14; padding: 20px; border-radius: 16px; margin-bottom: 10px; overflow-wrap: anywhere; }
+  .popup-failure { margin: 0; }
+  .popup-error-actions { display: flex; flex-direction: column; }
+  .popup-error-actions > .popup-status { order: -3; }
+  .popup-error-actions > .popup-error-panel { order: -2; }
+  .popup-error-actions > .popup-retry { order: -1; }
+  .popup-shell :is(button, label, summary) { touch-action: manipulation; }
+  @keyframes recording-pulse { 50% { opacity: .4; transform: scale(.78); } }
+  @keyframes stage-spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .recording-dot, .stage-spinner { animation: none; } }
+  @media (max-width: 360px) { .popup-shell { padding: 20px; } .popup-shell .app-header { flex-wrap: wrap; gap: 8px; } .popup-brand { flex-basis: calc(100% - 50px); } .popup-badge { order: 3; } .audio-level { width: 24px; } }
+}
+@layer utilities {
+  .popup-shell [data-slot="button"] { min-height: 48px; }
+  .popup-shell .app-header > [data-slot="button"] { min-height: 40px; }
+  .popup-shell .popup-start { min-height: 56px; background: var(--ink); color: white; font-size: 17px; }
+  .popup-start svg { fill: #E0392B; color: #E0392B; width: 12px; }
+  .popup-recording .popup-stop { background: var(--paper); color: var(--ink); min-height: 52px; }
+  .popup-stop svg { fill: #E0392B; color: #E0392B; }
+  .popup-recording .app-header > button:hover { background: var(--ink-raised); }
+  @media (pointer: coarse) { .popup-shell .app-header > [data-slot="button"], .popup-shell summary { min-height: 44px; } }
+  @media (forced-colors: active) { .profile-choice:has(input:checked) { outline: 2px solid Highlight; } }
+}

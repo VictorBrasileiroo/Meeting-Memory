@@ -1,0 +1,35 @@
+@layer components {
+  .settings-masthead .text-foreground { color: white; }
+  .settings-masthead .text-muted-foreground { color: var(--muted-on-ink); }
+  .settings-panel { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; }
+  .settings-row { display: grid; grid-template-columns: 260px minmax(0,1fr); gap: 48px; padding: 32px; }
+  .settings-row + .settings-row { border-top: 1px solid var(--line); }
+  .settings-row h2 { font-size: 21px; font-weight: 650; line-height: 1.2; letter-spacing: -.025em; margin: 0 0 12px; }
+  .settings-row p { font-size: 14px; line-height: 1.65; color: var(--muted-foreground); margin: 10px 0 0; }
+  .settings-row .field { margin-bottom: 0; }
+  .settings-row label, .settings-row legend { font-weight: 600; font-size: 14px; }
+  .settings-row a { color: var(--primary-hover); text-underline-offset: 4px; }
+  .settings-row fieldset { margin: 24px 0 0; padding: 0; border: 0; min-width: 0; }
+  .settings-row .radio-option { border: 2px solid var(--input); border-radius: 12px; padding: 16px; margin-top: 12px; gap: 12px; }
+  .settings-row .radio-option:has(input:checked) { background: var(--paper); border-color: var(--ink); }
+  .settings-row .radio-option input { accent-color: var(--ink); }
+  .settings-row .radio-option small { color: var(--muted-foreground); font-size: 13px; margin-top: 5px; line-height: 1.5; }
+  .settings-save { position: sticky; bottom: 0; display: flex; flex-direction: row-reverse; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 0 max(20px, env(safe-area-inset-bottom)); margin-top: 24px; background: var(--surface); border-top: 1px solid var(--line); }
+  .settings-save p { font-size: 13px; color: var(--muted-foreground); margin: 0; }
+  .settings-save button { background: var(--ink); color: white; min-height: 48px; }
+  .settings-app { scroll-padding-bottom: 160px; }
+  .settings-app :is(input,select,button,a) { scroll-margin-block: 24px 160px; }
+  .settings-app :is(a,button,label) { touch-action: manipulation; }
+  @media (max-width: 759px) {
+    .settings-row { grid-template-columns: minmax(0,1fr); gap: 20px; padding: 24px 20px; }
+    .settings-row .key-field { display: flex; flex-wrap: wrap; }
+    .settings-row .key-field > input { flex: 1; min-width: 140px; }
+    .settings-save { flex-wrap: wrap; }
+    .settings-save button { width: 100%; }
+  }
+}
+@layer utilities {
+  .settings-row :is([data-slot="input"],[data-slot="native-select"]) { min-height: 48px; border-color: var(--input); border-width: 1.5px; }
+  @media (pointer: coarse) { .settings-app button, .settings-app a { min-height: 44px; } }
+  @media (forced-colors: active) { .settings-row .radio-option:has(input:checked) { outline: 2px solid Highlight; } }
+}

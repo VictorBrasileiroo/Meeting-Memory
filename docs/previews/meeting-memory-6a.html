@@ -1,0 +1,296 @@
+﻿<style>
+#mm6a { --mm-bg:#F7F8FA; --mm-surface:#FFFFFF; --mm-text:#182230; --mm-muted:#596579; --mm-blue:#2453D4; --mm-blue-hover:#1C43AD; --mm-soft:#EDF2FF; --mm-line:#E3E7ED; --mm-control:#7B8798; --mm-green:#176348; --mm-green-soft:#EAF6F0; --mm-amber:#855200; --mm-amber-soft:#FFF4DD; --mm-red:#B42332; --mm-red-soft:#FDECEE; --mm-row-space:20px; color:var(--mm-text); font:14px/1.5 'Segoe UI',system-ui,sans-serif; color-scheme:light; width:100%; }
+#mm6a *, #mm6a *::before, #mm6a *::after { box-sizing:border-box; }
+#mm6a [hidden] { display:none !important; }
+#mm6a h1,#mm6a h2,#mm6a h3,#mm6a p { margin:0; color:inherit; }
+#mm6a h1 { font-size:28px; line-height:1.2; font-weight:600; letter-spacing:-.035em; }
+#mm6a h2 { font-size:20px; line-height:1.4; font-weight:600; letter-spacing:-.02em; }
+#mm6a h3 { font-size:16px; line-height:1.5; font-weight:600; }
+#mm6a button,#mm6a input,#mm6a select { font:inherit; }
+#mm6a button { transition:background-color 140ms,color 140ms; }
+#mm6a button:disabled { opacity:.6; cursor:not-allowed; }
+#mm6a :focus-visible { outline:3px solid var(--mm-blue); outline-offset:3px; }
+#mm6a button,#mm6a a { -webkit-tap-highlight-color:transparent; }
+#mm6a a { color:var(--mm-blue); text-underline-offset:3px; }
+#mm6a .mm-icon { width:17px; height:17px; flex-shrink:0; }
+#mm6a .mm-muted { color:var(--mm-muted); }
+#mm6a .mm-small { font-size:12px; line-height:1.5; }
+#mm6a .mm-previewbar { display:flex; flex-wrap:wrap; align-items:center; gap:12px; padding:0 100px 16px 0; }
+#mm6a .mm-previewbar > span { font-size:12px; color:var(--mm-muted); }
+#mm6a .mm-previewnav { display:flex; flex-wrap:wrap; gap:4px; }
+#mm6a .mm-previewnav button { border:0; background:transparent; color:var(--mm-muted); border-radius:6px; padding:7px 10px; min-height:36px; font-size:13px; }
+#mm6a .mm-previewnav button[aria-pressed=true] { color:var(--mm-blue); background:var(--mm-soft); }
+#mm6a .mm-stage { position:relative; }
+#mm6a .mm-app { background:var(--mm-bg); min-height:690px; }
+#mm6a .mm-topbar { display:flex; align-items:center; flex-wrap:wrap; gap:24px; padding:20px 30px; background:var(--mm-surface); border-bottom:1px solid var(--mm-line); }
+#mm6a .mm-brand { display:flex; align-items:center; gap:9px; font-weight:600; letter-spacing:-.03em; font-size:16px; white-space:nowrap; }
+#mm6a .mm-mark { display:grid; place-items:center; width:28px; height:28px; background:var(--mm-blue); border-radius:8px; color:var(--mm-surface); }
+#mm6a .mm-monogram { font-size:20px; line-height:1; font-weight:600; }
+#mm6a .mm-mark > i { display:none; }
+#mm6a .mm-mark:has(svg) .mm-monogram { display:none; }
+#mm6a .mm-topnav { display:flex; gap:6px; margin-left:auto; }
+#mm6a .mm-topnav button { background:transparent; border:0; color:var(--mm-muted); padding:8px 10px; font-size:13px; border-radius:6px; }
+#mm6a .mm-topnav button[aria-current=page] { color:var(--mm-blue); background:var(--mm-soft); }
+#mm6a .mm-main { padding:34px 32px 46px; max-width:1120px; margin:auto; }
+#mm6a .mm-heading { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:18px; margin-bottom:28px; }
+#mm6a .mm-heading p { margin-top:8px; color:var(--mm-muted); }
+#mm6a .mm-button { display:inline-flex; gap:8px; align-items:center; justify-content:center; background:var(--mm-surface); border:1px solid var(--mm-control); color:var(--mm-text); border-radius:8px; padding:8px 13px; min-height:38px; text-decoration:none; font-weight:500; line-height:1.4; }
+#mm6a .mm-button:hover { background:var(--mm-bg); }
+#mm6a .mm-button.mm-primary { color:var(--mm-surface); border-color:var(--mm-blue); background:var(--mm-blue); }
+#mm6a .mm-button.mm-primary:hover { background:var(--mm-blue-hover); }
+#mm6a .mm-button.mm-danger { color:var(--mm-red); border-color:var(--mm-red); }
+#mm6a .mm-button.mm-quiet { border-color:transparent; background:transparent; color:var(--mm-muted); }
+#mm6a .mm-link { background:transparent; border:0; color:var(--mm-blue); padding:4px 0; text-decoration:none; display:inline-flex; align-items:center; gap:6px; min-height:32px; text-align:left; }
+#mm6a .mm-link:hover { text-decoration:underline; text-underline-offset:3px; }
+#mm6a .mm-actions { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+#mm6a .mm-status { display:inline-flex; gap:6px; align-items:center; color:var(--mm-muted); font-size:12px; line-height:1.4; white-space:nowrap; }
+#mm6a .mm-status.mm-positive { color:var(--mm-green); }
+#mm6a .mm-status.mm-waiting { color:var(--mm-amber); }
+#mm6a .mm-status.mm-negative { color:var(--mm-red); }
+#mm6a .mm-status.mm-active { color:var(--mm-blue); }
+#mm6a .mm-status .mm-icon { width:14px; height:14px; }
+#mm6a .mm-searchrow { display:flex; align-items:end; gap:12px; margin:0 0 22px; }
+#mm6a label { display:block; font-size:13px; font-weight:500; }
+#mm6a .mm-field { display:grid; gap:7px; }
+#mm6a .mm-field-grow { flex:1; min-width:0; }
+#mm6a input:not([type=radio]),#mm6a select { border:1px solid var(--mm-control); border-radius:8px; padding:9px 11px; color:var(--mm-text); background:var(--mm-surface); width:100%; min-height:40px; }
+#mm6a input[type=radio] { accent-color:var(--mm-blue); }
+#mm6a .mm-listhead,#mm6a .mm-meeting { display:grid; grid-template-columns:minmax(0,2.5fr) minmax(86px,1fr) minmax(94px,1fr) minmax(128px,1.15fr) 40px; gap:14px; align-items:center; }
+#mm6a .mm-listhead { padding:0 14px 10px; color:var(--mm-muted); font-size:12px; }
+#mm6a .mm-list { background:var(--mm-surface); border-top:1px solid var(--mm-line); }
+#mm6a .mm-meeting { padding:var(--mm-row-space) 14px; border-bottom:1px solid var(--mm-line); }
+#mm6a .mm-meeting:hover { background:#FAFBFE; }
+#mm6a .mm-meeting-title { background:transparent; border:0; padding:0; text-align:left; color:var(--mm-text); font-size:14px; font-weight:600; line-height:1.45; }
+#mm6a .mm-meeting-title:hover { color:var(--mm-blue); text-decoration:underline; text-underline-offset:3px; }
+#mm6a .mm-meeting-meta { font-size:12px; color:var(--mm-muted); margin-top:5px; }
+#mm6a .mm-mobilemeta { display:none; }
+#mm6a .mm-storage { margin-top:26px; display:flex; gap:12px; align-items:center; flex-wrap:wrap; color:var(--mm-muted); font-size:12px; }
+#mm6a .mm-storage button { margin-left:auto; }
+#mm6a .mm-back { margin-bottom:20px; font-size:13px; }
+#mm6a .mm-result-title { max-width:760px; }
+#mm6a .mm-result-title h1 { font-size:30px; max-width:26ch; }
+#mm6a .mm-resultmeta { display:flex; gap:8px 14px; align-items:center; flex-wrap:wrap; color:var(--mm-muted); font-size:13px; margin-top:12px; }
+#mm6a .mm-result-actions { margin:24px 0; }
+#mm6a .mm-subnav { display:flex; gap:24px; border-bottom:1px solid var(--mm-line); margin:24px 0 30px; }
+#mm6a .mm-subnav button { background:transparent; border:0; border-bottom:2px solid transparent; padding:10px 0; color:var(--mm-muted); min-height:42px; }
+#mm6a .mm-subnav button[aria-pressed=true] { border-bottom-color:var(--mm-blue); color:var(--mm-blue); font-weight:500; }
+#mm6a .mm-readinggrid { display:grid; grid-template-columns:minmax(0,1fr) 135px; gap:32px; }
+#mm6a .mm-document { font-size:16px; max-width:72ch; min-width:0; background:var(--mm-surface); padding:28px 30px; border-radius:10px; }
+#mm6a .mm-document p,#mm6a .mm-document li { font-size:16px; line-height:1.65; }
+#mm6a .mm-document h2 { margin:0 0 14px; }
+#mm6a .mm-document section + section { margin-top:30px; padding-top:24px; border-top:1px solid var(--mm-line); }
+#mm6a .mm-document ul { padding-left:20px; margin:0; }
+#mm6a .mm-document li + li { margin-top:16px; }
+#mm6a .mm-document details { margin-top:8px; }
+#mm6a .mm-document summary { font-size:12px; color:var(--mm-blue); width:fit-content; min-height:28px; }
+#mm6a .mm-document blockquote { margin:8px 0; padding:4px 0 4px 14px; border-left:2px solid var(--mm-line); }
+#mm6a .mm-document blockquote p { font-size:14px; }
+#mm6a .mm-document .mm-taskmeta { font-size:13px; color:var(--mm-muted); margin-top:5px; }
+#mm6a .mm-index { font-size:12px; padding-top:6px; }
+#mm6a .mm-index a { display:block; margin-top:13px; text-decoration:none; color:var(--mm-muted); }
+#mm6a .mm-index a:hover { color:var(--mm-blue); }
+#mm6a .mm-sourcehint { font-size:12px; color:var(--mm-muted); margin-top:24px; }
+#mm6a .mm-notice { display:flex; align-items:start; gap:12px; background:var(--mm-soft); color:var(--mm-text); padding:18px; border-radius:8px; margin:22px 0; }
+#mm6a .mm-notice p + p { margin-top:5px; }
+#mm6a .mm-notice.mm-warning { background:var(--mm-amber-soft); }
+#mm6a .mm-notice.mm-error { background:var(--mm-red-soft); }
+#mm6a .mm-steps { margin:24px 0; list-style:none; padding:0; }
+#mm6a .mm-steps li { display:flex; gap:12px; align-items:center; padding:10px 0; }
+#mm6a .mm-stepdot { width:25px; height:25px; display:grid; place-items:center; border-radius:50%; background:var(--mm-soft); color:var(--mm-blue); font-size:12px; flex-shrink:0; }
+#mm6a .mm-settings { max-width:820px; }
+#mm6a .mm-settings-section { display:grid; grid-template-columns:180px minmax(0,1fr); gap:28px; padding:24px 0; border-top:1px solid var(--mm-line); }
+#mm6a .mm-settings-section h2 { font-size:16px; }
+#mm6a .mm-settingbody { display:grid; gap:16px; min-width:0; }
+#mm6a .mm-settingbody p { color:var(--mm-muted); font-size:13px; }
+#mm6a .mm-key { display:flex; gap:8px; }
+#mm6a .mm-key input { min-width:0; }
+#mm6a .mm-radio { display:flex; gap:10px; align-items:start; font-weight:400; }
+#mm6a .mm-radio input { margin-top:4px; flex-shrink:0; }
+#mm6a .mm-radio strong { font-weight:500; }
+#mm6a .mm-radio span span { display:block; font-size:12px; margin-top:4px; color:var(--mm-muted); }
+#mm6a .mm-save { padding:20px 0 0; border-top:1px solid var(--mm-line); }
+#mm6a .mm-popupstage { padding:26px 12px 40px; min-height:620px; }
+#mm6a .mm-popup { width:380px; max-width:100%; padding:20px; margin:auto; background:var(--mm-surface); border:1px solid var(--mm-line); border-radius:12px; box-shadow:0 10px 35px #1822300D; }
+#mm6a .mm-popupheader { display:flex; gap:8px; align-items:center; margin-bottom:20px; }
+#mm6a .mm-popupheader .mm-brand { font-size:15px; margin-right:auto; }
+#mm6a .mm-iconbutton { display:inline-grid; place-items:center; width:36px; height:36px; flex-shrink:0; border:0; background:transparent; color:var(--mm-muted); border-radius:7px; }
+#mm6a .mm-iconbutton:hover { color:var(--mm-blue); background:var(--mm-soft); }
+#mm6a .mm-popup h1 { font-size:20px; line-height:1.35; margin-bottom:22px; }
+#mm6a .mm-popupheading { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:18px; }
+#mm6a .mm-popupheading h1 { margin:0; }
+#mm6a .mm-popup .mm-field { margin-bottom:16px; }
+#mm6a .mm-full { width:100%; min-height:44px; }
+#mm6a .mm-sourcecompact { display:flex; align-items:center; gap:8px; color:var(--mm-muted); font-size:13px; margin:0 0 18px; }
+#mm6a .mm-sources { margin:18px 0 24px; }
+#mm6a .mm-sourcerow { display:flex; gap:9px; align-items:center; padding:10px 0; font-size:13px; }
+#mm6a .mm-sourcerow + .mm-sourcerow { border-top:1px solid var(--mm-line); }
+#mm6a .mm-level { display:flex; align-items:center; gap:3px; height:20px; margin-left:auto; }
+#mm6a .mm-level b { display:block; width:3px; height:7px; border-radius:2px; background:var(--mm-green); }
+#mm6a .mm-level b:nth-child(2) { height:13px; } #mm6a .mm-level b:nth-child(3) { height:18px; } #mm6a .mm-level b:nth-child(4) { height:11px; }
+#mm6a .mm-popup .mm-timer { font-size:32px; line-height:1.25; letter-spacing:-.03em; font-weight:500; font-variant-numeric:tabular-nums; margin:12px 0 5px; }
+#mm6a .mm-popup .mm-caption { font-size:12px; color:var(--mm-muted); margin:12px 0 20px; }
+#mm6a .mm-popup .mm-secondary-action { margin-top:8px; }
+#mm6a .mm-popupfooter { margin-top:18px; padding-top:12px; border-top:1px solid var(--mm-line); display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:12px; }
+#mm6a .mm-backgroundjob { margin-top:22px; border-top:1px solid var(--mm-line); padding-top:16px; display:grid; gap:6px; }
+#mm6a .mm-backgroundjob strong { font-size:13px; font-weight:500; }
+#mm6a .mm-demo-controls { display:flex; flex-wrap:wrap; gap:12px; align-items:center; padding:12px 0 18px; }
+#mm6a .mm-demo-controls label { display:flex; gap:8px; align-items:center; color:var(--mm-muted); font-size:12px; }
+#mm6a .mm-demo-controls select { padding:5px 8px; min-height:32px; font-size:12px; width:auto; }
+#mm6a .mm-toast { margin-top:12px; padding:10px 14px; background:var(--mm-green-soft); color:var(--mm-green); border-radius:8px; font-size:13px; }
+#mm6a .mm-empty { padding:42px 10px; text-align:center; }
+#mm6a .mm-import { max-width:650px; }
+#mm6a .mm-upload { padding:32px 22px; background:var(--mm-surface); border:1px dashed var(--mm-control); border-radius:10px; text-align:center; margin:24px 0; }
+#mm6a .mm-upload .mm-icon { width:24px; height:24px; margin-bottom:12px; color:var(--mm-blue); }
+#mm6a .mm-upload p { color:var(--mm-muted); margin:7px 0 18px; font-size:13px; }
+#mm6a .mm-upload .mm-button { margin:auto; }
+#mm6a .mm-file { display:flex; align-items:center; gap:14px; padding:20px; background:var(--mm-surface); margin:24px 0; border-radius:8px; }
+#mm6a .mm-file strong { font-weight:500; }
+#mm6a .mm-file .mm-link { margin-left:auto; }
+#mm6a .mm-audio-placeholder { padding:20px 0; display:flex; flex-wrap:wrap; gap:14px; align-items:center; border-bottom:1px solid var(--mm-line); }
+#mm6a .mm-time { font-variant-numeric:tabular-nums; font-size:13px; color:var(--mm-muted); }
+#mm6a dialog { border:1px solid var(--mm-line); border-radius:12px; padding:28px; max-width:min(460px,calc(100% - 32px)); color:var(--mm-text); background:var(--mm-surface); box-shadow:0 20px 60px #18223026; }
+#mm6a dialog::backdrop { background:#18223055; }
+#mm6a dialog p { margin:14px 0 24px; }
+#mm6a .mm-storage-details { margin-top:24px; border-top:1px solid var(--mm-line); padding-top:22px; }
+@media(max-width:760px) { #mm6a .mm-listhead { display:none; } #mm6a .mm-meeting { grid-template-columns:minmax(0,1fr) auto; gap:8px; } #mm6a .mm-meeting > .mm-origin,#mm6a .mm-meeting > .mm-profile { display:none; } #mm6a .mm-meeting > .mm-status { grid-column:1; grid-row:2; } #mm6a .mm-meeting > .mm-iconbutton { grid-column:2; grid-row:1 / 3; } #mm6a .mm-readinggrid { grid-template-columns:1fr; gap:0; } #mm6a .mm-index { display:none; } #mm6a .mm-document { max-width:none; } #mm6a .mm-settings-section { grid-template-columns:1fr; gap:15px; } }
+@media(max-width:760px) { #mm6a .mm-mobilemeta { display:block; margin-top:4px; } }
+@media(max-width:480px) { #mm6a .mm-previewbar { padding-right:0; } #mm6a .mm-topbar { padding:16px; gap:14px; } #mm6a .mm-topnav { margin-left:0; } #mm6a .mm-main { padding:26px 16px 34px; } #mm6a .mm-searchrow { flex-direction:column; align-items:stretch; } #mm6a .mm-heading { margin-bottom:22px; } #mm6a .mm-result-title h1 { font-size:26px; } #mm6a .mm-document { padding:22px 16px; } #mm6a .mm-document p,#mm6a .mm-document li { font-size:15px; } #mm6a .mm-key { flex-wrap:wrap; } #mm6a .mm-key input { width:100%; } #mm6a .mm-popupstage { padding:18px 0 30px; } #mm6a .mm-popup { padding:18px; } #mm6a .mm-popupheader { flex-wrap:wrap; margin-bottom:22px; } #mm6a .mm-popupheader .mm-brand { font-size:14px; } #mm6a .mm-subnav { gap:20px; } #mm6a input:not([type=radio]),#mm6a select { font-size:16px; } }
+@media(pointer:coarse) { #mm6a .mm-button,#mm6a .mm-iconbutton,#mm6a .mm-link,#mm6a .mm-previewnav button,#mm6a .mm-topnav button { min-height:44px; } #mm6a .mm-iconbutton { min-width:44px; } }
+@media(prefers-reduced-motion:reduce) { #mm6a * { transition:none !important; animation:none !important; scroll-behavior:auto !important; } }
+</style>
+<div id="mm6a" lang="pt-BR" aria-label="Proposta de interface Meeting Memory">
+  <div class="mm-previewbar"><span>PRÉVIA 6A · DADOS FICTÍCIOS</span><nav class="mm-previewnav" aria-label="Telas da proposta">
+    <button type="button" class="cursor-interaction" data-route="library" aria-pressed="true">Biblioteca</button><button type="button" class="cursor-interaction" data-route="popup" aria-pressed="false">Popup</button><button type="button" class="cursor-interaction" data-route="result" aria-pressed="false">Resultado</button><button type="button" class="cursor-interaction" data-route="settings" aria-pressed="false">Configurações</button><button type="button" class="cursor-interaction" data-route="import" aria-pressed="false">Importação futura</button>
+  </nav></div>
+  <div class="mm-demo-controls" hidden><label for="mm-scenario">Cenário simulado <select id="mm-scenario"><option value="idle">Pronto</option><option value="starting">Preparando</option><option value="recording">Gravando</option><option value="stopping">Finalizando</option><option value="transcribing">Transcrevendo</option><option value="quota">Aguardando limite</option><option value="analyzing">Gerando notas</option><option value="retry">Erro recuperável</option><option value="error">Erro permanente</option><option value="cancelRequested">Cancelando</option><option value="cancelled">Cancelado</option><option value="completed">Concluído</option><option value="empty">Sem notas relevantes</option><option value="interrupted">Gravação interrompida</option><option value="legacy">Legado sem notas</option></select></label></div>
+  <div class="mm-stage" aria-label="Meeting Memory · direção clara"></div>
+  <div class="mm-toast" role="status" aria-live="polite" hidden></div>
+  <dialog aria-labelledby="mm-dialog-title" aria-describedby="mm-dialog-description"><h2 id="mm-dialog-title">Excluir áudio desta reunião?</h2><p id="mm-dialog-description">As notas e a transcrição serão mantidas. Não será possível ouvir ou retranscrever o áudio removido.</p><div class="mm-actions"><button type="button" class="mm-button cursor-interaction" data-action="close-dialog" autofocus>Manter dados</button><button type="button" class="mm-button mm-danger cursor-interaction" data-action="confirm-delete">Excluir áudio</button></div></dialog>
+</div>
+<script>
+(() => {
+  const root = document.getElementById('mm6a');
+  const stage = root.querySelector('.mm-stage');
+  const toast = root.querySelector('.mm-toast');
+  const scenarioControl = root.querySelector('#mm-scenario');
+  const dialog = root.querySelector('dialog');
+  const state = { route:'library', scenario:'idle', pane:'notes', search:'', sort:'newest', selected:'product', profile:'Reunião geral', file:false, imported:false, storage:false, deleteKind:'audio', showKey:false, compact:true, rowSpace:20, popupWidth:'380' };
+  const profiles = '<option>Reunião geral</option><option>Pesquisa</option><option>Desenvolvimento</option><option>Aula</option>';
+  const rows = [
+    { id:'product', title:'Próxima etapa do produto', date:'17 out. 2026 · 10:00', duration:'24min', origin:'Aba + microfone', profile:'Geral', status:'completed', audio:true },
+    { id:'architecture', title:'Revisão da arquitetura local', date:'17 out. 2026 · 09:00', duration:'31min', origin:'Aba + microfone', profile:'Desenvolvimento', status:'analyzing', audio:true },
+    { id:'research', title:'Planejamento do experimento', date:'16 out. 2026 · 14:30', duration:'18min', origin:'Aba + microfone', profile:'Pesquisa', status:'quota', audio:true },
+    { id:'legacy', title:'Aula · 01 out. 2026', date:'01 out. 2026 · 08:00', duration:'', origin:'Não registrada', profile:'Aula', status:'legacy', audio:false }
+  ];
+  const icon = name => '<i class="mm-icon" data-lucide="'+name+'" aria-hidden="true"></i>';
+  const button = (text, action, cls='') => '<button type="button" class="mm-button cursor-interaction '+cls+'" data-action="'+action+'"'+(action==='stop'&&state.scenario!=='recording'?' disabled':'')+'>'+text+'</button>';
+  const link = (text, action) => '<button type="button" class="mm-link cursor-interaction" data-action="'+action+'">'+text+'</button>';
+  const brand = () => '<div class="mm-brand"><span class="mm-mark"><span class="mm-monogram" aria-hidden="true">m</span>'+icon('audio-lines')+'</span>Meeting Memory</div>';
+  const statusInfo = {
+    idle:['Pronto','circle-check','mm-positive'],starting:['Preparando','loader','mm-active'],recording:['Gravando','circle','mm-negative'],stopping:['Finalizando','save','mm-active'],
+    transcribing:['Transcrevendo','audio-lines','mm-active'],quota:['Aguardando limite','clock-3','mm-waiting'],analyzing:['Gerando notas','sparkles','mm-active'],retry:['Nova tentativa agendada','clock-3','mm-waiting'],error:['Precisa de atenção','circle-alert','mm-negative'],cancelRequested:['Cancelando…','pause',''],cancelled:['Cancelado','circle-pause',''],completed:['Notas prontas','circle-check','mm-positive'],empty:['Notas prontas','circle-check','mm-positive'],interrupted:['Interrompida','triangle-alert','mm-waiting'],legacy:['Transcrição preservada','file-text','']
+  };
+  const status = s => { const [label,name,cls] = statusInfo[s] || statusInfo.idle; return '<span class="mm-status '+cls+'">'+icon(name)+label+'</span>'; };
+  const chrome = content => '<div class="mm-app"><header class="mm-topbar">'+brand()+'<nav class="mm-topnav" aria-label="Navegação do produto"><button type="button" class="cursor-interaction" data-route="library" '+(state.route==='library'?'aria-current="page"':'')+'>Biblioteca</button><button type="button" class="cursor-interaction" data-route="settings" '+(state.route==='settings'?'aria-current="page"':'')+'>Configurações</button></nav></header>'+content+'</div>';
+  const notify = msg => { toast.textContent = msg; toast.hidden = false; };
+  const allRows = () => state.imported ? [{id:'imported',title:'Áudio importado · 17 out. 2026',date:'17 out. 2026 · importação',duration:'24min',origin:'Arquivo de áudio',profile:'Geral',status:'transcribing',audio:true},...rows] : rows;
+  function listRows() {
+    let items = allRows().filter(r => [r.title,r.profile,r.date].join(' ').toLocaleLowerCase('pt-BR').includes(state.search.toLocaleLowerCase('pt-BR')));
+    if(state.sort==='oldest') items.reverse();
+    if(state.sort==='title') items.sort((a,b)=>a.title.localeCompare(b.title,'pt-BR'));
+    return items.length ? items.map(r=>'<article class="mm-meeting"><div><button type="button" class="mm-meeting-title cursor-interaction" data-meeting="'+r.id+'">'+r.title+'</button><div class="mm-meeting-meta">'+r.date+(r.duration?' · '+r.duration:'')+'<span class="mm-small">'+(r.audio?'':' · áudio removido')+'</span><span class="mm-mobilemeta">'+r.origin+' · '+r.profile+'</span></div></div><span class="mm-origin mm-small mm-muted">'+r.origin+'</span><span class="mm-profile mm-small mm-muted">'+r.profile+'</span>'+status(r.status)+'<button type="button" class="mm-iconbutton cursor-interaction" data-meeting="'+r.id+'" aria-label="Abrir '+r.title+'">'+icon('arrow-up-right')+'</button></article>').join('') : '<div class="mm-empty"><h2>Nenhuma reunião encontrada</h2><p class="mm-muted">Tente outro título, perfil ou data.</p></div>';
+  }
+  function library() {
+    return chrome('<main class="mm-main"><div class="mm-heading"><div><h1>Biblioteca</h1><p>Suas conversas, organizadas para consultar.</p></div>'+button(icon('upload')+'Importar áudio','import')+'</div><div class="mm-searchrow"><label class="mm-field mm-field-grow" for="mm-search">Buscar reuniões<input id="mm-search" type="search" placeholder="Título, perfil ou data" autocomplete="off"></label><label class="mm-field" for="mm-sort">Ordenar<select id="mm-sort"><option value="newest">Mais recentes</option><option value="oldest">Mais antigas</option><option value="title">Título</option></select></label></div><div class="mm-listhead" aria-hidden="true"><span>Reunião</span><span>Origem</span><span>Perfil</span><span>Status</span><span></span></div><div class="mm-list">'+listRows()+'</div><footer class="mm-storage">'+icon('hard-drive')+'<span>186 MB de áudio · estimativa fictícia</span>'+link('Gerenciar espaço','storage')+'</footer>'+(state.storage?'<section class="mm-storage-details"><h2>Gerenciar espaço</h2><p class="mm-muted mm-small">Ações da reunião “Próxima etapa do produto” · áudio de exemplo: 18,6 MB.</p><div class="mm-actions">'+button('Excluir somente áudio','delete-audio','mm-danger')+button('Excluir sessão inteira','delete-session','mm-quiet')+'</div></section>':'')+'</main>');
+  }
+  function evidence(quote,part=1) { return '<details><summary class="cursor-interaction">Ver fonte</summary><blockquote><p>“'+quote+'”</p>'+link('Abrir na transcrição · Parte '+part,'source')+'</blockquote></details>'; }
+  function notes() {
+    if(state.scenario==='empty') return '<div class="mm-document"><h2>Nenhuma nota relevante</h2><p>Não encontramos conteúdo suficiente para organizar notas.</p><p class="mm-sourcehint">A transcrição disponível continua acessível.</p>'+link('Consultar transcrição','transcript')+'</div>';
+    return '<div class="mm-readinggrid"><article class="mm-document"><section id="mm-summary"><h2>Resumo</h2><p>A próxima etapa será concentrada na biblioteca e na leitura dos resultados. A equipe decidiu preservar o pipeline de captura e validar a nova interface antes de acrescentar importação de áudio.</p>'+evidence('Vamos manter o pipeline de captura e validar a interface primeiro.')+'</section><section id="mm-decisions"><h2>Decisões</h2><ul><li>Organizar o histórico em uma biblioteca com busca e ordenação.'+evidence('Decidimos colocar as reuniões em uma biblioteca com busca.')+'</li><li>Manter a transcrição integral como referência para as notas.'+evidence('A transcrição precisa continuar inteira, como referência.')+'</li></ul></section><section id="mm-tasks"><h2>Tarefas</h2><ul><li>Preparar a proposta de navegação e os layouts.<p class="mm-taskmeta">Ana · até sexta</p>'+evidence('Ana vai preparar a navegação e os layouts até sexta.')+'</li><li>Revisar a legibilidade de uma transcrição longa.'+evidence('Ficou definida a tarefa de revisar a legibilidade da transcrição longa.')+'</li></ul></section><p class="mm-sourcehint">Notas geradas são interpretação. Consulte a transcrição para revisar o contexto.</p></article><aside class="mm-index" aria-label="Nesta reunião"><span class="mm-muted">NESTA REUNIÃO</span><a href="#mm-summary">Resumo</a><a href="#mm-decisions">Decisões</a><a href="#mm-tasks">Tarefas</a></aside></div>';
+  }
+  function transcript() { return '<article class="mm-document"><div class="mm-heading"><h2>Transcrição completa</h2>'+button(icon('copy')+'Copiar','copy-transcript')+'</div><p class="mm-taskmeta">Fonte preservada por parte. Trechos de fronteira podem se repetir.</p><section><h3>Parte 1</h3><p>Vamos manter o pipeline de captura e validar a interface primeiro. Decidimos colocar as reuniões em uma biblioteca com busca. A transcrição precisa continuar inteira, como referência.</p><br><p>Ana vai preparar a navegação e os layouts até sexta. Ficou definida a tarefa de revisar a legibilidade da transcrição longa.</p></section><p class="mm-sourcehint">Falantes não registrados neste exemplo.</p>'+link('Voltar à nota','notes')+'</article>'; }
+  function audio() { return '<article class="mm-document"><h2>Áudio salvo</h2><p class="mm-taskmeta">Uma parte · conteúdo ilustrativo, sem arquivo reproduzível nesta prévia.</p><div class="mm-audio-placeholder">'+button(icon('play')+'Ouvir parte 1','play')+'<span class="mm-time">00:00 / 24:10</span></div><p class="mm-sourcehint">Remover áudio mantém notas e transcrição, mas impede ouvi-lo ou retranscrevê-lo.</p>'+button('Excluir somente áudio','delete-audio','mm-quiet')+'</article>'; }
+  function processing() {
+    const s=state.scenario;
+    const title={idle:'Preparando notas',starting:'Preparando gravação',recording:'Gravação em andamento',stopping:'Salvando última parte',transcribing:'Transcrevendo sua reunião',quota:'Aguardando limite da API',analyzing:'Gerando suas notas',retry:'Nova tentativa agendada',error:'Não foi possível gerar as notas',cancelRequested:'Cancelamento solicitado',cancelled:'Processamento cancelado',interrupted:'Esta gravação foi interrompida',legacy:'Transcrição preservada'}[s] || 'Preparando notas';
+    const detail={transcribing:'2 de 3 partes transcritas. O áudio restante está salvo.',quota:'O material está preservado. A fila aguarda a próxima janela disponível.',analyzing:'A transcrição está salva. Você pode iniciar outra gravação pelo popup.',retry:'Falha temporária de conexão. O material está salvo e a tentativa será repetida.',error:'A API rejeitou a análise. A transcrição continua disponível para consulta.',cancelRequested:'Aguardando o executor interromper o trabalho desta sessão.',cancelled:'Os dados já salvos foram mantidos. Você pode retomar quando quiser.',interrupted:'A fonte disponível cobre somente as partes recuperadas. Nenhuma análise parcial foi feita.',legacy:'Esta sessão antiga não tem modelo de notas definido. Nenhuma análise nova foi iniciada.'}[s] || 'O processamento acompanha os dados salvos nesta sessão.';
+    const warning=['quota','retry','interrupted'].includes(s), error=s==='error';
+    let actions=['cancelled','error'].includes(s)?button(s==='cancelled'?'Retomar processamento':'Reprocessar somente as notas','resume','mm-primary'):['cancelRequested','interrupted','legacy','recording','starting','stopping'].includes(s)?'':button('Cancelar processamento','cancel','mm-quiet');
+    if(s==='recording') actions=button('Abrir controle de gravação','popup','mm-primary');
+    return '<div class="mm-notice '+(warning?'mm-warning':error?'mm-error':'')+'">'+icon(error?'circle-alert':warning?'clock-3':'audio-lines')+'<div><h2>'+title+'</h2><p class="mm-muted">'+detail+'</p></div></div><div class="mm-actions">'+actions+link('Consultar transcrição','transcript')+'</div><ol class="mm-steps"><li><span class="mm-stepdot">1</span>Áudio salvo localmente</li><li><span class="mm-stepdot">2</span>'+(['analyzing','error','legacy'].includes(s)?'Transcrição preservada':'Transcrição por partes')+'</li><li><span class="mm-stepdot">3</span>Notas'+(s==='analyzing'?' em andamento':s==='error'?' não geradas':s==='cancelled'?' canceladas':' aguardam conclusão da fonte')+'</li></ol>';
+  }
+  function result() {
+    const r=allRows().find(x=>x.id===state.selected)||rows[0];
+    const ready=['completed','empty'].includes(state.scenario);
+    return chrome('<main class="mm-main"><div class="mm-back">'+link(icon('arrow-left')+'Biblioteca','library')+'</div><header class="mm-result-title"><h1>'+r.title+'</h1><div class="mm-resultmeta"><span>'+r.date+'</span><span>'+r.profile+'</span>'+(r.duration?'<span>'+r.duration+'</span>':'')+status(state.scenario)+'</div></header>'+(ready?'<div class="mm-result-actions mm-actions">'+button(icon('copy')+'Copiar notas','copy','mm-primary')+button(icon('download')+'Exportar Markdown','export')+'<span class="mm-muted mm-small">Gemini 3.5 Flash-Lite</span></div>':'')+'<nav class="mm-subnav" aria-label="Conteúdo da reunião">'+['notes','transcript','audio'].map((p,i)=>'<button type="button" class="cursor-interaction" data-pane="'+p+'" aria-pressed="'+(state.pane===p)+'">'+['Notas','Transcrição','Áudio'][i]+'</button>').join('')+'</nav>'+(state.pane==='transcript'?transcript():state.pane==='audio'?r.audio?audio():'<div class="mm-document"><h2>Áudio indisponível</h2><p>O áudio desta sessão não está mais salvo localmente.</p></div>':ready?notes():processing())+'</main>');
+  }
+  function popup() {
+    const s=state.scenario, active=['starting','recording','stopping'].includes(s);
+    let content='';
+    const sourceRows='<div class="mm-sources"><div class="mm-sourcerow">'+icon('app-window')+'Áudio da aba'+(s==='recording'?'<span class="mm-level" aria-label="Nível fictício"><b></b><b></b><b></b><b></b></span>':'')+'</div><div class="mm-sourcerow">'+icon('mic')+'Microfone'+(s==='recording'?'<span class="mm-level" aria-label="Nível fictício"><b></b><b></b><b></b><b></b></span>':'')+'</div></div>';
+    if(active) { content=status(s)+'<div class="mm-timer">'+(s==='recording'?'12:48':'00:00')+'</div><p class="mm-muted mm-small">'+state.profile+' · aba + microfone</p>'+sourceRows+'<p class="mm-caption">'+(s==='recording'?'Você pode fechar este popup.':s==='starting'?'Preparando as duas fontes…':'Salvando a última parte…')+'</p>'+button(icon(s==='recording'?'square':'save')+(s==='recording'?'Finalizar gravação':s==='starting'?'Preparando…':'Finalizando…'),'stop',s==='recording'?'mm-danger mm-full':'mm-full'); }
+    else { content='<div class="mm-popupheading"><h1>Nova gravação</h1>'+status('idle')+'</div><label class="mm-field" for="mm-profile">Perfil<select id="mm-profile">'+profiles+'</select></label>'+(state.compact?'<div class="mm-sourcecompact">'+icon('mic')+'Aba atual + microfone</div>':sourceRows)+button(icon('circle')+'Iniciar gravação','start','mm-primary mm-full')+button(icon('upload')+'Importar áudio','import','mm-quiet mm-full mm-secondary-action');
+      if(s!=='idle') content+='<section class="mm-backgroundjob"><strong>Próxima etapa do produto</strong>'+status(s)+'<div class="mm-actions">'+link(['completed','empty'].includes(s)?'Abrir resultado':'Ver detalhes','result')+(['completed','empty','cancelled','cancelRequested','error','interrupted'].includes(s)?'':link('Cancelar','cancel'))+(s==='cancelled'?link('Retomar','resume'):'')+'</div></section>';
+    }
+    return '<div class="mm-popupstage viz-dotted-background"><main class="mm-popup" aria-label="Popup da extensão"><header class="mm-popupheader">'+brand()+'<button type="button" class="mm-iconbutton cursor-interaction" data-route="settings" aria-label="Configurações">'+icon('settings-2')+'</button></header>'+content+'<footer class="mm-popupfooter">'+link(icon('library')+'Biblioteca','library')+'<span class="mm-muted">'+(active?'Captura local':'Áudio e texto → Gemini')+'</span></footer></main></div>';
+  }
+  function settings() {
+    return chrome('<main class="mm-main mm-settings"><div class="mm-heading"><div><h1>Configurações</h1><p>Preferências salvas neste perfil do navegador.</p></div></div><form id="mm-settings-form"><section class="mm-settings-section"><h2>Conexão Gemini</h2><div class="mm-settingbody"><label class="mm-field" for="mm-key">Chave da API<div class="mm-key"><input id="mm-key" type="'+(state.showKey?'text':'password')+'" value="chave-ficticia-da-previa" autocomplete="off" spellcheck="false" aria-describedby="mm-key-help">'+button(state.showKey?'Ocultar':'Mostrar','show-key')+'</div></label><p id="mm-key-help">A chave fica no perfil local e pode ser recuperada por quem controla este computador. Salvar não testa o acesso à API.</p></div></section><section class="mm-settings-section"><h2>Geração de notas</h2><div class="mm-settingbody"><label class="mm-field" for="mm-model">Modelo para novas sessões<select id="mm-model"><option>Econômico · Gemini 3.5 Flash-Lite</option><option>Equilibrado · Gemini 3.6 Flash</option><option>Avançado · Gemini 3.8 Flash</option></select></label><p>Sessões anteriores mantêm o modelo escolhido. Não há troca automática em falhas.</p></div></section><section class="mm-settings-section"><h2>Áudio local</h2><div class="mm-settingbody"><fieldset style="border:0;padding:0;margin:0;display:grid;gap:18px"><legend style="font-size:13px;font-weight:500;margin-bottom:14px">Depois de transcrever</legend><label class="mm-radio"><input type="radio" name="mm-retention" value="delete" checked><span><strong>Apagar áudio após transcrever</strong><span>Notas e texto permanecem. O áudio é liberado após a limpeza remota; não poderá ser ouvido ou retranscrito.</span></span></label><label class="mm-radio"><input type="radio" name="mm-retention" value="keep"><span><strong>Manter gravação local</strong><span>Preserva áudio para revisão e ocupa espaço neste perfil.</span></span></label></fieldset><p>Material com falha é preservado. A preferência vale para novas sessões.</p><p>Idioma de transcrição: Português brasileiro.</p></div></section><section class="mm-settings-section"><h2>Armazenamento</h2><div class="mm-settingbody"><p>186 MB de áudio · estimativa fictícia nesta prévia.</p>'+link('Gerenciar reuniões e liberar espaço','manage-library')+'</div></section><section class="mm-settings-section"><h2>Privacidade</h2><div class="mm-settingbody"><p>Áudio é enviado à Gemini para transcrição; texto é enviado para gerar notas. A captura e os resultados ficam neste perfil.</p><details><summary class="cursor-interaction">Processamento e retenção</summary><p>As chamadas usam store:false e os arquivos remotos conhecidos têm limpeza própria. Isso não descreve toda a política de dados do provedor.</p></details></div></section><div class="mm-save">'+button('Salvar configurações','save-settings','mm-primary')+'</div></form></main>');
+  }
+  function importing() {
+    return chrome('<main class="mm-main mm-import"><div class="mm-back">'+link(icon('arrow-left')+'Biblioteca','library')+'</div><h1>Importar áudio</h1><p class="mm-muted" style="margin-top:10px">Uma gravação local, com o mesmo fluxo de transcrição e notas.</p>'+(state.file?'<div class="mm-file">'+icon('file-audio')+'<div><strong>Reunião de produto.mp3</strong><p class="mm-muted mm-small">24min10s · 18,6 MB · arquivo fictício</p></div>'+link('Trocar','change-file')+'</div><label class="mm-field" for="mm-import-profile">Perfil<select id="mm-import-profile">'+profiles+'</select></label><div class="mm-notice">'+icon('cloud-upload')+'<div><strong>Importar e processar envia o áudio à Gemini</strong><p class="mm-small mm-muted">Depois da transcrição, o texto será usado para gerar notas. Retenção: apagar áudio após transcrever e concluir a limpeza.</p></div></div><div class="mm-actions">'+button('Importar e processar','confirm-import','mm-primary')+button('Cancelar','library','mm-quiet')+'</div>':'<div class="mm-upload">'+icon('upload')+'<h2>Escolha um arquivo de áudio</h2><p>Proposta inicial: MP3, M4A, WAV ou WebM<br>Até 29min30s · teto proposto de 100 MiB</p>'+button('Usar arquivo de exemplo','choose-file','mm-primary')+'</div><p class="mm-muted mm-small">Etapa posterior · seleção e validação simuladas. Nenhum arquivo real é lido ou enviado.</p>')+'</main>');
+  }
+  function refreshIcons() { if(globalThis.lucide) globalThis.lucide.createIcons({ attrs:{ width:17,height:17 } }); }
+  function render() {
+    root.querySelectorAll('.mm-previewnav button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.route===state.route)));
+    root.querySelector('.mm-demo-controls').hidden=!['popup','result'].includes(state.route);
+    scenarioControl.value=state.scenario;
+    stage.innerHTML=({library,popup,result,settings,import:importing}[state.route] || library)();
+    const search=root.querySelector('#mm-search'); if(search) search.value=state.search;
+    const sort=root.querySelector('#mm-sort'); if(sort) sort.value=state.sort;
+    const profile=root.querySelector('#mm-profile'); if(profile) profile.value=state.profile;
+    const pop=root.querySelector('.mm-popup'); if(pop) pop.style.width=state.popupWidth+'px';
+    root.style.setProperty('--mm-row-space',state.rowSpace+'px');
+    refreshIcons();
+  }
+  function navigate(route) { state.route=route; toast.hidden=true; render(); remember(); }
+  function remember() { if(window.openai && typeof window.openai.setWidgetState==='function') window.openai.setWidgetState({modelContent:{screen:state.route,popupCompact:state.compact,popupWidth:state.popupWidth},privateContent:{scenario:state.scenario,pane:state.pane}}).catch(()=>{}); }
+  function restore(saved) { if(!saved)return; const m=saved.modelContent||{},p=saved.privateContent||{}; if(['library','popup','result','settings','import'].includes(m.screen))state.route=m.screen; if(typeof m.popupCompact==='boolean')state.compact=m.popupCompact; if(['380','420'].includes(m.popupWidth))state.popupWidth=m.popupWidth; if(statusInfo[p.scenario])state.scenario=p.scenario; if(['notes','transcript','audio'].includes(p.pane))state.pane=p.pane; }
+  root.addEventListener('input',e=>{ if(e.target.id==='mm-search'){state.search=e.target.value;root.querySelector('.mm-list').innerHTML=listRows();refreshIcons();} });
+  root.addEventListener('change',e=>{if(e.target.id==='mm-profile')state.profile=e.target.value;if(e.target.id==='mm-sort'){state.sort=e.target.value;root.querySelector('.mm-list').innerHTML=listRows();refreshIcons();} if(e.target.id==='mm-scenario'){state.scenario=e.target.value;state.pane='notes';render();remember();}});
+  root.addEventListener('submit',e=>e.preventDefault());
+  root.addEventListener('click',e=>{
+    const el=e.target.closest('[data-route],[data-action],[data-pane],[data-meeting]'); if(!el)return;
+    if(el.dataset.route){ if(el.dataset.route==='result' && state.route!=='result'){state.scenario='completed';state.pane='notes';} navigate(el.dataset.route); return; }
+    if(el.dataset.meeting){state.selected=el.dataset.meeting;state.scenario=allRows().find(r=>r.id===state.selected).status;state.pane='notes';navigate('result');return;}
+    if(el.dataset.pane){state.pane=el.dataset.pane;render();remember();return;}
+    const action=el.dataset.action;
+    if(['library','popup','settings','import','result'].includes(action)){if(action==='result')state.pane='notes';navigate(action);return;}
+    if(action==='start'){state.scenario='recording';render();notify('Simulação: gravação iniciada. Nenhum áudio é capturado.');}
+    if(action==='stop'){if(state.scenario==='recording'){state.scenario='analyzing';render();notify('Simulação: gravação finalizada; notas em processamento.');} }
+    if(action==='cancel'){state.scenario='cancelRequested';render();notify('Simulação: pedido registrado. Selecione “Cancelado” para avaliar o estado confirmado.');}
+    if(action==='resume'){state.scenario='analyzing';render();notify('Simulação: mesma sessão retomada. Nenhum dado é enviado.');}
+    if(['copy','copy-transcript','export','play'].includes(action))notify({copy:'Simulação de cópia de notas. A área de transferência não foi alterada.','copy-transcript':'Simulação de cópia da transcrição.',export:'Simulação de exportação Markdown. Nenhum arquivo foi gerado.',play:'O player é ilustrativo; não há áudio nesta prévia.'}[action]);
+    if(['notes','transcript','source'].includes(action)){state.pane=action==='notes'?'notes':'transcript';render();remember();if(action==='source')notify('Fonte fictícia da Parte 1 aberta.');}
+    if(action==='storage'){state.storage=!state.storage;render();}
+    if(action==='manage-library'){state.storage=true;navigate('library');}
+    if(action==='choose-file'){state.file=true;render();}
+    if(action==='change-file'){state.file=false;render();}
+    if(action==='confirm-import'){state.imported=true;state.file=false;navigate('library');notify('Importação simulada na biblioteca. Nenhum arquivo foi lido ou enviado.');}
+    if(action==='show-key'){state.showKey=!state.showKey;const input=root.querySelector('#mm-key');input.type=state.showKey?'text':'password';el.textContent=state.showKey?'Ocultar':'Mostrar';}
+    if(action==='save-settings')notify('Simulação: preferências salvas. As configurações reais não foram alteradas.');
+    if(action==='delete-audio'||action==='delete-session'){
+      state.deleteKind=action==='delete-audio'?'audio':'session';
+      root.querySelector('#mm-dialog-title').textContent=state.deleteKind==='audio'?'Excluir áudio desta reunião?':'Excluir esta sessão inteira?';
+      root.querySelector('#mm-dialog-description').textContent=state.deleteKind==='audio'?'Próxima etapa do produto · 18,6 MB estimados. Notas e transcrição serão mantidas. O áudio removido não poderá ser ouvido ou retranscrito.':'Próxima etapa do produto: áudio, transcrição e notas serão excluídos. Esta ação não poderá ser desfeita.';
+      root.querySelector('[data-action="confirm-delete"]').textContent=state.deleteKind==='audio'?'Excluir áudio':'Excluir sessão';dialog.showModal();
+    }
+    if(action==='close-dialog')dialog.close();
+    if(action==='confirm-delete'){dialog.close();notify('Confirmação simulada. Nenhum dado foi excluído.');}
+  });
+  restore(window.openai && window.openai.widgetState);
+  render();
+  window.addEventListener('openai:set_globals',e=>{if(e.detail?.globals?.widgetState){restore(e.detail.globals.widgetState);render();}});
+  if(globalThis.Tweak){const tweak=new globalThis.Tweak({container:stage,onChange:()=>{render();remember();}});tweak.addToggle(state,'compact',{label:'Popup com fontes compactas'});tweak.addSelect(state,'popupWidth',{label:'Largura do popup',options:[{label:'380 px',value:'380'},{label:'420 px',value:'420'}]});tweak.addSlider(state,'rowSpace',{label:'Espaço vertical da lista',min:12,max:24,step:2,unit:'px',reference:'--mm-row-space'});}
+})();
+</script>

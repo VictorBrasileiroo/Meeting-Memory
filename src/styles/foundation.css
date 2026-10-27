@@ -1,0 +1,78 @@
+@theme inline {
+  --color-ink: var(--ink);
+  --color-ink-raised: var(--ink-raised);
+  --color-ink-line: var(--ink-line);
+  --color-paper: var(--paper);
+  --color-muted-on-ink: var(--muted-on-ink);
+  --color-audio-tab: var(--audio-tab);
+  --color-audio-mic: var(--audio-mic);
+  --color-audio-mic-soft: var(--audio-mic-soft);
+  --color-mark: var(--mark);
+  --color-mark-strong: var(--mark-strong);
+  --color-recording: var(--recording);
+  --font-reading: var(--font-reading);
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-pressed: var(--primary-pressed);
+  --color-primary-soft: var(--primary-soft);
+  --color-secondary: var(--secondary);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive-hover: var(--destructive-hover);
+  --color-destructive-soft: var(--destructive-soft);
+  --color-overlay: var(--overlay);
+  --font-sans: var(--font-body);
+  --radius-lg: var(--radius-control);
+  --radius-xl: var(--radius-card);
+  --shadow-dialog: 0 20px 60px rgb(24 34 48 / 16%);
+}
+
+@layer base {
+  html { color-scheme: light; }
+  body { font-family: var(--font-body); color: var(--foreground); background: var(--background); }
+  /* Static CSP-safe scroll lock. Focus and modal semantics stay with Radix. */
+  html:has([data-slot="alert-dialog-content"][data-state="open"]),
+  body:has([data-slot="alert-dialog-content"][data-state="open"]) { overflow: hidden; overscroll-behavior: contain; }
+  html { scrollbar-gutter: stable; }
+  html.extension-popup { scrollbar-gutter: auto; }
+  @media (forced-colors: active) {
+    [data-slot="button"], [data-slot="badge"], [data-slot="tabs-trigger"] { border: 1px solid ButtonText; }
+    [data-slot="alert-dialog-content"] { border: 2px solid CanvasText; }
+  }
+}
+
+/* Only shared identity adjustments. Page structure and flows migrate later. */
+@layer components {
+  .page-intro h1 { font-size: clamp(28px, 3.5vw, 36px); line-height: 1.2; font-weight: 600; letter-spacing: -.03em; }
+  .eyebrow { color: var(--muted-foreground); font-weight: 500; letter-spacing: .06em; }
+  .card { border: 1px solid var(--border); box-shadow: none; }
+  .foundation-notice { background: var(--primary-soft); color: var(--secondary-foreground); font-size: 14px; }
+  .privacy-card { background: var(--surface); color: var(--foreground); border: 1px solid var(--border); }
+  .privacy-card p { color: var(--muted-foreground); }
+  .radio-option { border: 1px solid var(--border); background: var(--surface); }
+  .radio-option:has(input:checked) { background: var(--primary-soft); border-color: var(--primary); }
+  .summary-card { background: var(--surface); }
+  .popup-shell [data-slot="native-select"] { font-size: 14px; }
+  [data-slot="button"], [data-slot="tabs-trigger"], [data-slot="alert-dialog-cancel"], [data-slot="alert-dialog-action"] { cursor: pointer; }
+}

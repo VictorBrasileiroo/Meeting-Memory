@@ -1,0 +1,8 @@
+/* Cascade contract: no Tailwind Preflight during the incremental migration. */
+@layer theme, legacy, base, components, utilities;
+@import 'tailwindcss/theme.css' layer(theme);
+@import './tokens.css';
+@import './fonts.css';
+@import './legacy.css' layer(legacy);
+@import './foundation.css';
+@import 'tailwindcss/utilities.css' layer(utilities) source('../');
